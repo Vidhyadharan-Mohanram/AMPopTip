@@ -738,14 +738,17 @@ open class PopTip: UIView {
   }
   
   fileprivate func floatAnimation(offset: CGFloat) {
-    var offsetX = offset
-    var offsetY = offset
+    var offsetX: CGFloat = 0.0
+    var offsetY: CGFloat = 0.0
     switch direction {
     case .up, .none:
       offsetY = -offset
+    case .down:
+      offsetY = offset
     case .left:
-      offsetX = -offset
-    default: break
+        offsetX = -offset
+    case .right:
+        offsetX = offset
     }
     
     UIView.animate(withDuration: actionAnimationIn / 2, delay: actionDelayIn, options: [.curveEaseInOut, .repeat, .autoreverse, .beginFromCurrentState, .allowUserInteraction], animations: {
